@@ -1,5 +1,11 @@
-Basically a top-down zombie shooter
-currently have working movement, shift to sprint, crosshair and primitive line between player and crosshair, can use pygame.mouse.set_cursor() to set right onto mouse
+# A top-down zombie shooter \
+## currently have working \
+#### movement, wasd \
+#### shift to sprint, shift colour change, colour change is temporary \
+#### crosshair \
+#### line between player and crosshair (gun line of sight), temporary \
+#### working left click, which draws circle around mouse, temporary \
+#### working right click, which toggles from crosshair to dot (aiming), temporary \
 Plan to anchor world around player, moving mouse moves camera slightly but never so that the player is out of frame.
 
 # TODO : 
