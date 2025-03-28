@@ -54,8 +54,8 @@ while running:
     x, y = mouse_pos
     pygame.draw.line(screen, (0, 0, 0), (x - 10, y), (x + 10, y), 3)
     pygame.draw.line(screen, (0, 0, 0), (x, y - 10), (x, y + 10), 3)
-    if right_click:
-        # If right click mode (aiming) is active, draw over crosshair and draw dot over everything
+    if pygame.mouse.get_pressed()[2]:
+        # If right click is held, draw over crosshair and draw dot over everything
         # TODO Find better way to cover crosshair other than drawing over with background colour bc this could lead to drawing over player or other objects
         pygame.draw.circle(screen, pygame.Color(148, 148, 148), mouse_pos, radius=12)
         pygame.draw.circle(screen, pygame.Color(255, 0, 0), mouse_pos, radius=3)
@@ -63,10 +63,6 @@ while running:
     if pygame.mouse.get_pressed()[0]:
         # Left click draws circle around to mouse just to show that I can
         pygame.draw.circle(screen, pygame.Color(0, 255, 0), mouse_pos, radius=30, width=3)
-    if pygame.mouse.get_pressed()[2]:
-        # Right click toggles aiming mode
-        right_click = not right_click
-        time.sleep(0.1)
     if keys[pygame.K_f]:
         # Custom full screen toggle
         if not small_screen:
