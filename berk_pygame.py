@@ -36,7 +36,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    # Fill screen with greenish colour to remove any unneeded stuff
+    # Fill screen with grayish colour to remove any unneeded stuff
     screen.fill("gray58")
     # Get key presses
     keys = pygame.key.get_pressed()
@@ -45,19 +45,26 @@ while running:
     # Mouse for crosshair
     mouse_pos = pygame.mouse.get_pos()
     # Player circle with skin tone-ish colour
+    # Get x and y from mouse_pos
+    x, y = mouse_pos
+    # Aiming toggle, when right mb is NOT held down, ,draws crosshair, when right mb IS held down, draws dot and doesnt draw crosshair
+    aiming = False
+    if pygame.mouse.get_pressed()[2]:
+        aiming = True
+    if not aiming:
+        # Draw lines onto mouse_pos for crisshair
+        pygame.draw.line(screen, (0, 0, 0), (x - 10, y), (x + 10, y), 3)
+        pygame.draw.line(screen, (0, 0, 0), (x, y - 10), (x, y + 10), 3)
     pygame.draw.circle(screen, pygame.Color(255, 206, 180), player_pos, radius=10)
     # Draw line from player to mouse. This is temporary just to see if I could, future plan is to somehow use this to get gun sight line and fov
-    # Temporary if not j toggle for line toggle when j is held down
-    if not keys[pygame.K_j]:
+    # Temporary line drawing toggle with J
+    line_drawing = False
+    if keys[pygame.K_j]:
+        line_drawing = not line_drawing
+    if line_drawing:
         pygame.draw.line(screen, "white", [player_pos.x, player_pos.y], mouse_pos, 3)
-    # Get x and y from mouse_pos and then draw 2 lines onto given x and y making crosshair
-    x, y = mouse_pos
-    pygame.draw.line(screen, (0, 0, 0), (x - 10, y), (x + 10, y), 3)
-    pygame.draw.line(screen, (0, 0, 0), (x, y - 10), (x, y + 10), 3)
     if pygame.mouse.get_pressed()[2]:
-        # If right click is held, draw over crosshair and draw dot over everything
-        # TODO Find better way to cover crosshair other than drawing over with background colour bc this could lead to drawing over player or other objects
-        pygame.draw.circle(screen, pygame.Color(148, 148, 148), mouse_pos, radius=12)
+        # If right click is held, switch crosshair for red dot
         pygame.draw.circle(screen, pygame.Color(255, 0, 0), mouse_pos, radius=3)
     # Mouse button click draws circle around mouse
     if pygame.mouse.get_pressed()[0]:
