@@ -47,12 +47,12 @@ while running:
     # Player circle with skin tone-ish colour
     # Get x and y from mouse_pos
     x, y = mouse_pos
-    # Aiming toggle, when right mb is NOT held down, ,draws crosshair, when right mb IS held down, draws dot and doesnt draw crosshair
+    # Aiming toggle, when right mb is NOT held down, draws crosshair, when right mb IS held down, draws dot and doesn't draw crosshair
     aiming = False
     if pygame.mouse.get_pressed()[2]:
         aiming = True
     if not aiming:
-        # Draw lines onto mouse_pos for crisshair
+        # Draw lines onto mouse_pos for crosshair
         pygame.draw.line(screen, (0, 0, 0), (x - 10, y), (x + 10, y), 3)
         pygame.draw.line(screen, (0, 0, 0), (x, y - 10), (x, y + 10), 3)
     pygame.draw.circle(screen, pygame.Color(255, 206, 180), player_pos, radius=10)
